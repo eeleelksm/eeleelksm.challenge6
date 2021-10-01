@@ -2,3 +2,7 @@ header {
   background-color: lightskyblue;
   background-image: linear-gradient(45deg, #3827d4 0%, #2bb1ff 52%, #2b40ff  90%);
 }
+
+button {
+  border-radius: 5px;
+}
