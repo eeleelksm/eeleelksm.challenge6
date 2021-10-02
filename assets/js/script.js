@@ -1,9 +1,9 @@
-var allCities = [];
+var citySearchAll = [];
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
 var cityEl = document.querySelector("#city");
 var pastSearchEl = document.querySelector("#past-search");
 var searchFormEl = document.querySelector("#search-form");
-var SearchButtonEl = document.querySelector(".search-button");
+var searchButtonEl = document.querySelector(".search-button");
 
 
 // execute a current weather report from Open Weather API
@@ -21,6 +21,7 @@ var getWeather = function(cityName) {
 };
 
 getWeather();
+// Get Current Weather 
 
 // Get Temperature
 
@@ -30,10 +31,14 @@ getWeather();
 
 // 5 Day Forecast
 
-// // save cities viewed into local storage
-// var saveSearch = function() {
-//   localStorage.item("allCities", JSON.stringify(allCities));
-// }
+// save cities viewed into local storage
+// searchButtonEl.addEventListener("click", function() {
+//   searchCity = cityEl.value.trim();
+//   getWeather(searchCity);
+//   citySearchAll.push(searchCity);
+//   localStorage.setItem("search", JSON.stringify(citySearchAll));
+// })
+ 
 
 /**
  * var formSubmitHander = function() {
