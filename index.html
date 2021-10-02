@@ -14,30 +14,38 @@
     <h1 class="text-center font-weight-bold text-light p-1">Weather Dashboard</h1>
   </header>
 
-  <main class="container-fluid flex-row">
-    <div class="col-12 col-md-4">
-      <form class="search-form">
-        <h4 class="font-weight-bold">Search for a City:</h4>
-        <input name="city" id="city" class="form-control" type="text" placeholder="Enter City Name" />
-        <button class="btn-block btn btn-primary mt-2" type="submit" id="search">Search</button>
-      </form>
-      <div class="past-search col-3 list-group" id="past-search-buttons"></div>
-    </div>
 
-    <div class="col-12 col-md-8">
-      <div class="row border city-selected" id="current-forecast">
-        <div>
-          <h2 id="city-name"></h2>
-          <div id="current-weather"></div>
+  <main class="container-fluid flex-row">
+    <!-- input and search button -->
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <form class="search-form">
+          <h3 class="font-weight-bold">Search for a City:</h3>
+          <input name="city" id="city" class="form-control" type="text" placeholder="Enter City Name" />
+          <button class="btn-block btn btn-primary mt-2" type="button" id="search">Search</button>
+        </form>
+        <!-- where previous cities searched will appear -->
+        <div class="past-search col-3 list-group" id="past-search-buttons"></div>
+      </div>
+
+      <!-- current weather -->
+      <div class="col mt-4 mr-4">
+        <div class="card border city-selected" id="current-forecast"> 
+          <h4 class="card-title m-2">Current Forecast</h4>
+          <div>
+            <h5 id="city-name"></h2>
+            <div id="current-weather"></div>
+          </div>
+        </div>
+
+        <!-- 5 day forecast -->
+        <div class="card" id="fiveday-forecast">
+          <h4 class="card-title m-2">Five Day Forecast</h4>
+          <h2 id="forecast"></h2>
+          <div id="fiveday-full"></div>
         </div>
       </div>
-
-      <div class="row border" id="fiveday-forecast">
-        <h2 id="forecast"></h2>
-        <div id="fiveday-full"></div>
-      </div>
     </div>
- 
   </main>
 
 
