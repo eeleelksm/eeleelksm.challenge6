@@ -14,11 +14,32 @@
     <h1 class="text-center font-weight-bold text-light p-1">Weather Dashboard</h1>
   </header>
 
-  <div class="">
-    <h2 class="font-weight-bold m-2">Search for a City:</h2>
-    <input class ="form-control p-1 m-2 col-3" type="text">
-    <button class="btn-block btn btn-primary col-3 m-2">Search</button>
-  </div>
+  <main class="container-fluid flex-row">
+    <div class="col-12 col-md-4">
+      <form class="search-form">
+        <h4 class="font-weight-bold">Search for a City:</h4>
+        <input name="city" id="city" class="form-control" type="text" placeholder="Enter City Name" />
+        <button class="btn-block btn btn-primary mt-2" type="submit" id="search">Search</button>
+      </form>
+      <div class="past-search col-3 list-group" id="past-search-buttons"></div>
+    </div>
+
+    <div class="col-12 col-md-8">
+      <div class="row border city-selected" id="current-forecast">
+        <div>
+          <h2 id="city-name"></h2>
+          <div id="current-weather"></div>
+        </div>
+      </div>
+
+      <div class="row border" id="fiveday-forecast">
+        <h2 id="forecast"></h2>
+        <div id="fiveday-full"></div>
+      </div>
+    </div>
+ 
+  </main>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
