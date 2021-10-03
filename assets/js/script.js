@@ -21,12 +21,12 @@ var getWeather = function(cityName) {
     });
   })
 };
-getWeather();
 
 
 searchButtonEl.addEventListener("click", function() {
   event.preventDefault();
   console.log(cityEl.value);
+  getWeather(cityEl.value);
  })
 
 
