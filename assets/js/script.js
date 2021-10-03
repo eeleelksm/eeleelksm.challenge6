@@ -3,14 +3,12 @@ var cityEl = document.querySelector("#city");
 var pastSearchEl = document.querySelector("#past-city-search");
 var searchFormEl = document.querySelector(".search-form");
 var searchButtonEl = document.querySelector("#search");
-var todaysWeatherEl = document.querySelector(".today-weather")
-var fiveWeatherEl = document.querySelector("#fiveday-full")
 var currentTempEl = document.querySelector(".temp");
 var currentHumidEl = document.querySelector(".humid");
 var cityNameEl = document.querySelector("#city-name");
 var currentWindEl = document.querySelector(".wind");
 var uvIndexEl = document.querySelector(".uv-index");
-var forecastEl = document.querySelector("#forecast");
+var forecastEl = document.querySelectorAll("#forecast");
 
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
 
@@ -65,14 +63,17 @@ var getWeather = function(cityName) {
             }
           })
         })
+        // retrieving the data for 5 day forecast
         var dailyUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,aalerts&appid=" + apiKey;
+        
         fetch(dailyUrl)
         .then(function(response) {
           response.json().then(function(data) {
-            console.log("hi");
+            var unixDate = data["daily"][0]["dt"];
+            var forecastDate = new Date(unixDate*1000);
+            console.log(forecastDate.toLocaleDateString("en-US"));
           })
         })
-
       });
     } else { 
       alert("Incorrect city name. Try again.");
