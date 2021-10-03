@@ -22,7 +22,7 @@
         <form class="search-form">
           <h3 class="font-weight-bold">Search for a City:</h3>
           <input name="city" id="city" class="form-control city-search" type="text" placeholder="Enter City Name" />
-          <button class="btn-block btn btn-primary mt-2" type="submit" id="search">Search</button>
+          <button class="btn-block btn btn-primary mt-2 search-button" type="submit" id="search">Search</button>
         </form>
         <!-- where previous cities searched will appear -->
         <div class="past-search col-3 list-group" id="past-city-search"></div>
@@ -35,6 +35,9 @@
           <div>
             <h5 id="city-name"></h2>
             <div id="today-weather"></div>
+            <p class="temp"></p>
+            <p class="humid"></p>
+            <p class="uv-index"></p>
           </div>
         </div>
 

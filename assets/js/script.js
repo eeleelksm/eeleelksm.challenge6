@@ -2,7 +2,7 @@ var citySearchAll = [];
 var cityEl = document.querySelector("#city");
 var pastSearchEl = document.querySelector("#past-search");
 var searchFormEl = document.querySelector("#search-form");
-var searchButtonEl = document.querySelector(".search-button");
+var searchButtonEl = document.querySelector("#search-button");
 var todaysWeatherEl = document.querySelector("#today-weather")
 var fiveWeatherEl = document.querySelector("fiveday-full")
 
@@ -23,6 +23,11 @@ var getWeather = function(cityName) {
 };
 
 getWeather();
+
+searchButtonEl.addEventListener("click", function() {
+  console.log("yes");
+ })
+
 // Get Current Weather 
 
 // Get Temperature
@@ -33,13 +38,7 @@ getWeather();
 
 // 5 Day Forecast
 
-// save cities viewed into local storage
-// searchButtonEl.addEventListener("click", function() {
-//   searchCity = cityEl.value.trim();
-//   getWeather(searchCity);
-//   citySearchAll.push(searchCity);
-//   localStorage.setItem("search", JSON.stringify(citySearchAll));
-// })
+
  
 
 /**
