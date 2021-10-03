@@ -65,20 +65,54 @@ var getWeather = function(cityName) {
         })
         // retrieving the data for 5 day forecast
         var dailyUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,aalerts&appid=" + apiKey;
-        
         fetch(dailyUrl)
         .then(function(response) {
           response.json().then(function(data) {
-            var unixDate = data["daily"][0]["dt"];
+            // convert the dt time
+            var unixDate = data["daily"][1]["dt"];
             var date = new Date(unixDate*1000);
             var forecastDate = date.toLocaleDateString("en-US");
-            console.log(forecastDate);
+
+            // add date to weather card
             var forecastDateEl = document.createElement("p");
             forecastDateEl.classList.add("forecast-date");
-            forecastEl.appendChild(forecastDateEl);
-          })
-        })
+            forecastDateEl.textContent = forecastDate;
+            forecastEl[0].appendChild(forecastDateEl);
 
+            //create and add weather icon
+            var forecastIcon = data["daily"][1]["weather"][0]["icon"];
+            var forecastDesc = data["daily"][1]["weather"][0]["description"];
+            var forecastIconEl = document.createElement("img");
+            forecastIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + forecastIcon + "@2x.png")
+            forecastIconEl.setAttribute("alt", forecastDesc);
+            forecastEl[0].append(forecastIconEl);
+
+            // add temperature, humidity and wind to 5 day weather cards
+            var forecastTemp = data["daily"][1]["temp"]["day"];
+            var newForecastTemp = "Temperature: " + Math.round((((forecastTemp-273.5)*1.8)+32)) + "\xB0" + "F";
+            console.log(newForecastTemp);
+            var newForecastTempEl = document.createElement("p");
+            newForecastTempEl.classList.add("forecast-temp");
+            
+
+            // var forecastHumid
+
+            // var forecastWind
+
+
+
+          // var unixDate = data["daily"][0]["dt"];
+          // var date = new Date(unixDate*1000);
+          // var day = [0, 8, 16, 24, 32];
+          // var forecastCard = forecastEl.classlist.add("card-body");
+          // console.log(forecastCard);
+            // var unixDate = data["daily"][0]["dt"];
+            // var date = new Date(unixDate*1000);
+            // var forecastDate = date.toLocaleDateString("en-US");
+            // console.log(forecastDate);
+            // forecastEl.innerHTML = unixDate;
+          });
+        })
       });
     } else { 
       alert("Incorrect city name. Try again.");

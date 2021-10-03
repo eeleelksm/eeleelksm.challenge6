@@ -18,9 +18,9 @@
   <main class="container-fluid flex-row">
     <!-- input and search button -->
     <div class="row">
-      <div class="col-12 col-md-4">
-        <form class="search-form">
-          <h3 class="font-weight-bold">Search for a City:</h3>
+      <div class="col-12 col-md-3">
+        <form class="search-form mt-4">
+          <h4 class="">Search for a City:</h4>
           <input name="city" id="city" class="form-control" type="text" placeholder="Enter City Name" />
           <button class="btn-block btn btn-primary mt-2" type="submit" id="search">Search</button>
         </form>
@@ -31,26 +31,27 @@
       <!-- current forecast -->
       <div class="col mt-4 mr-4">
         <div class="card border-dark"> 
-          <h4 class="card-title m-2">Current Forecast</h4>
+          <h4 class="card-title m-2 font-weight-bold">Current Forecast</h4>
           <div>
             <h5 id="city-name" class="m-2"></h2>
             <div id="today-weather"></div>
-            <p class="temp m-2"></p>
-            <p class="humid m-2"></p>
-            <p class="wind m-2"></p>
-            <p class="uv-index m-2"></p>
+              <p class="temp m-2"></p>
+              <p class="humid m-2"></p>
+              <p class="wind m-2"></p>
+              <p class="uv-index m-2"></p>
           </div>
         </div>
 
         <!-- 5 day forecast -->
-        <div class="card border-dark mt-2" id="fiveday-forecast">
-          <h4 class="card-title m-2">Five Day Forecast</h4>
-          <div id="forecast-all">
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+        <div class="card border-dark mt-2 flex-col" id="fiveday-forecast">
+          <h4 class="card-title m-2 font-weight-bold">Five Day Forecast</h4>
+          <div>
+            <div class ="row mx-auto " id="forecast-all">
+              <div class="col-2 forecast bg-primary text-white m-2 rounded"></div>
+              <div class="col-2 forecast bg-primary text-white m-2 rounded"></div>
+              <div class="col-2 forecast bg-primary text-white m-2 rounded"></div>
+              <div class="col-2 forecast bg-primary text-white m-2 rounded"></div>
+              <div class="col-2 forecast bg-primary text-white m-2 rounded"></div>
           </div>
         </div>
       </div>
