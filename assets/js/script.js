@@ -8,7 +8,7 @@ var currentHumidEl = document.querySelector(".humid");
 var cityNameEl = document.querySelector("#city-name");
 var currentWindEl = document.querySelector(".wind");
 var uvIndexEl = document.querySelector(".uv-index");
-var forecastEl = document.querySelectorAll("#forecast");
+var forecastEl = document.querySelectorAll(".forecast");
 
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
 
@@ -70,10 +70,15 @@ var getWeather = function(cityName) {
         .then(function(response) {
           response.json().then(function(data) {
             var unixDate = data["daily"][0]["dt"];
-            var forecastDate = new Date(unixDate*1000);
-            console.log(forecastDate.toLocaleDateString("en-US"));
+            var date = new Date(unixDate*1000);
+            var forecastDate = date.toLocaleDateString("en-US");
+            console.log(forecastDate);
+            var forecastDateEl = document.createElement("p");
+            forecastDateEl.classList.add("forecast-date");
+            forecastEl.appendChild(forecastDateEl);
           })
         })
+
       });
     } else { 
       alert("Incorrect city name. Try again.");
