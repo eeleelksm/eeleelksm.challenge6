@@ -31,17 +31,15 @@ var getWeather = function(cityName) {
         var icon = data["weather"][0]["icon"];
         var lat = data['coord']['lat'];
         var lon = data['coord']['lon'];
-        console.log(apiName);
-        console.log(apiTemp);
-        console.log(apiHumid);
-        console.log(lat);
-        console.log(lon);
+       
 
+        // adding into HTML for current weather section
         cityNameEl.innerHTML = apiName + " - " + moment().format("dddd (L)");
-        iconEl.innerHTML ="<img src='https://openweathermap.org/img/wn/'" + icon + "@2x.png>";
+        iconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
         currentTempEl.innerHTML = "Temperature: " + Math.round((((apiTemp-273.5)*1.8)+32)) + "\xB0" + "F";
         currentHumidEl.innerHTML = "Humidity: " + apiHumid + "%";
         currentWindEl.innerHTML = "Wind: " + apiWind + " MPH";
+      
 
         // retrieving the UV index using latitude and longitude
         var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude={part}&appid=" + apiKey;
@@ -71,48 +69,51 @@ var getWeather = function(cityName) {
         fetch(dailyUrl)
         .then(function(response) {
           response.json().then(function(data) {
-            // convert the dt time
-            var unixDate = data["daily"][1]["dt"];
-            var date = new Date(unixDate*1000);
-            var forecastDate = date.toLocaleDateString("en-US");
 
-            // add date to weather card
-            var forecastDateEl = document.createElement("p");
-            forecastDateEl.classList.add("forecast-date");
-            forecastDateEl.textContent = forecastDate;
-            forecastEl[0].append(forecastDateEl);
+            for (i = 1; i < forecastEl.length; i++) {
+              // convert the dt time
+              var unixDate = data["daily"][i]["dt"];
+              var date = new Date(unixDate*1000);
+              var forecastDate = date.toLocaleDateString("en-US");
 
-            //create and add weather icon
-            var forecastIcon = data["daily"][1]["weather"][0]["icon"];
-            var forecastDesc = data["daily"][1]["weather"][0]["description"];
-            var forecastIconEl = document.createElement("img");
-            forecastIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + forecastIcon + "@2x.png")
-            forecastIconEl.setAttribute("alt", forecastDesc);
-            forecastEl[0].append(forecastIconEl);
+              // add date to weather card
+              var forecastDateEl = document.createElement("p");
+              forecastDateEl.classList.add("forecast-date");
+              forecastDateEl.textContent = forecastDate;
+              forecastEl[i-1].append(forecastDateEl);
 
-            // add temperature to 5 day weather cards
-            var forecastTemp = data["daily"][1]["temp"]["day"];
-            var newForecastTemp = "Temperature: " + Math.round((((forecastTemp-273.5)*1.8)+32)) + "\xB0" + "F";
-            var newForecastTempEl = document.createElement("p");
-            newForecastTempEl.classList.add("forecast-temp");
-            newForecastTempEl.textContent = newForecastTemp;
-            forecastEl[0].append(newForecastTempEl);
+              //create and add weather icon
+              var forecastIcon = data["daily"][i]["weather"][0]["icon"];
+              var forecastDesc = data["daily"][i]["weather"][0]["description"];
+              var forecastIconEl = document.createElement("img");
+              forecastIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + forecastIcon + "@2x.png")
+              forecastIconEl.setAttribute("alt", forecastDesc);
+              forecastEl[i-1].append(forecastIconEl);
 
-            // add humidity to 5 day weather cards
-            var forecastHumid = data["daily"][1]["humidity"];
-            var newForecastHumid = "Humidity: " + forecastHumid + "%";
-            var newForecastHumidEl = document.createElement("p");
-            newForecastHumidEl.classList.add("forecast-humid");
-            newForecastHumidEl.textContent = newForecastHumid;
-            forecastEl[0].append(newForecastHumidEl);
+              // add temperature to 5 day weather cards
+              var forecastTemp = data["daily"][i]["temp"]["day"];
+              var newForecastTemp = "Temperature: " + Math.round((((forecastTemp-273.5)*1.8)+32)) + "\xB0" + "F";
+              var newForecastTempEl = document.createElement("p");
+              newForecastTempEl.classList.add("forecast-temp");
+              newForecastTempEl.textContent = newForecastTemp;
+              forecastEl[i-1].append(newForecastTempEl);
 
-            // add wind to 5 day weather cards
-            var forecastWind = data["daily"][1]["wind_speed"];
-            var newForecastWind = "Wind Speed: " + forecastWind + " MPH";
-            var newForecastWindEl = document.createElement("p");
-            newForecastWindEl.classList.add("forecast-wind");
-            newForecastWindEl.textContent = newForecastWind;
-            forecastEl[0].append(newForecastWindEl);
+              // add humidity to 5 day weather cards
+              var forecastHumid = data["daily"][i]["humidity"];
+              var newForecastHumid = "Humidity: " + forecastHumid + "%";
+              var newForecastHumidEl = document.createElement("p");
+              newForecastHumidEl.classList.add("forecast-humid");
+              newForecastHumidEl.textContent = newForecastHumid;
+              forecastEl[i-1].append(newForecastHumidEl);
+
+              // add wind to 5 day weather cards
+              var forecastWind = data["daily"][i]["wind_speed"];
+              var newForecastWind = "Wind Speed: " + forecastWind + " MPH";
+              var newForecastWindEl = document.createElement("p");
+              newForecastWindEl.classList.add("forecast-wind");
+              newForecastWindEl.textContent = newForecastWind;
+              forecastEl[i-1].append(newForecastWindEl);
+            }
 
 
 
