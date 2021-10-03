@@ -4,7 +4,7 @@ var pastSearchEl = document.querySelector("#past-city-search");
 var searchFormEl = document.querySelector(".search-form");
 var searchButtonEl = document.querySelector("#search");
 var todaysWeatherEl = document.querySelector(".today-weather")
-var fiveWeatherEl = document.querySelector(".fiveday-full")
+var fiveWeatherEl = document.querySelector("#fiveday-full")
 
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
 
@@ -26,8 +26,10 @@ getWeather();
 
 searchButtonEl.addEventListener("click", function() {
   event.preventDefault();
-  console.log("yes");
+  console.log(searchButtonEl);
  })
+
+
 
 // Get Current Weather 
 
