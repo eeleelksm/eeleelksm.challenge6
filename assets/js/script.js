@@ -5,6 +5,8 @@ var searchFormEl = document.querySelector(".search-form");
 var searchButtonEl = document.querySelector("#search");
 var todaysWeatherEl = document.querySelector(".today-weather")
 var fiveWeatherEl = document.querySelector("#fiveday-full")
+var currentTempEl = document.querySelector(".temp");
+var cityNameEl = document.querySelector("#city-name");
 
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
 
@@ -16,18 +18,25 @@ var getWeather = function(cityName) {
   // make  request to the url
   fetch(apiUrl)
   .then(function(response) {
-    response.json().then(function(data) {
+    if (response.ok) {
+      response.json().then(function(data) {
       console.log(data);
     });
+    } else {
+      alert("Incorrect city name. Try again.");
+    }
   })
 };
-
 
 searchButtonEl.addEventListener("click", function() {
   event.preventDefault();
   console.log(cityEl.value);
   getWeather(cityEl.value);
  })
+
+// display the current weather
+//display name of city
+
 
 
 // Get Current Weather 
