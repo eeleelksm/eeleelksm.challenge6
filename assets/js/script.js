@@ -90,16 +90,24 @@ var getWeather = function(cityName) {
             // add temperature, humidity and wind to 5 day weather cards
             var forecastTemp = data["daily"][1]["temp"]["day"];
             var newForecastTemp = "Temperature: " + Math.round((((forecastTemp-273.5)*1.8)+32)) + "\xB0" + "F";
-            console.log(newForecastTemp);
             var newForecastTempEl = document.createElement("p");
             newForecastTempEl.classList.add("forecast-temp");
             newForecastTempEl.textContent = newForecastTemp;
             forecastEl[0].append(newForecastTempEl);
 
+            var forecastHumid = data["daily"][1]["humidity"];
+            var newForecastHumid = "Humidity: " + forecastHumid + "%";
+            var newForecastHumidEl = document.createElement("p");
+            newForecastHumidEl.classList.add("forecast-humid");
+            newForecastHumidEl.textContent = newForecastHumid;
+            forecastEl[0].append(newForecastHumidEl);
 
-            // var forecastHumid
-
-            // var forecastWind
+            var forecastWind = data["daily"][1]["wind_speed"];
+            var newForecastWind = "Wind Speed: " + forecastWind + " MPH";
+            var newForecastWindEl = document.createElement("p");
+            newForecastWindEl.classList.add("forecast-wind");
+            newForecastWindEl.textContent = newForecastWind;
+            forecastEl[0].append(newForecastWindEl);
 
 
 
