@@ -26,9 +26,8 @@ getWeather();
 
 searchButtonEl.addEventListener("click", function() {
   event.preventDefault();
-  console.log(searchButtonEl);
+  console.log(cityEl.value);
  })
-
 
 
 // Get Current Weather 
