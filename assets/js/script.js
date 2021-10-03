@@ -9,6 +9,7 @@ var cityNameEl = document.querySelector("#city-name");
 var currentWindEl = document.querySelector(".wind");
 var uvIndexEl = document.querySelector(".uv-index");
 var forecastEl = document.querySelectorAll(".forecast");
+var iconEl = document.querySelector("#current-icon");
 
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
 
@@ -27,6 +28,7 @@ var getWeather = function(cityName) {
         var apiTemp = data['main']['temp'];
         var apiHumid = data['main']['humidity'];
         var apiWind = data['wind']['speed'];
+        var icon = data["weather"][0]["icon"];
         var lat = data['coord']['lat'];
         var lon = data['coord']['lon'];
         console.log(apiName);
@@ -36,6 +38,7 @@ var getWeather = function(cityName) {
         console.log(lon);
 
         cityNameEl.innerHTML = apiName + " - " + moment().format("dddd (L)");
+        iconEl.innerHTML ="<img src='https://openweathermap.org/img/wn/'" + icon + "@2x.png>";
         currentTempEl.innerHTML = "Temperature: " + Math.round((((apiTemp-273.5)*1.8)+32)) + "\xB0" + "F";
         currentHumidEl.innerHTML = "Humidity: " + apiHumid + "%";
         currentWindEl.innerHTML = "Wind: " + apiWind + " MPH";
@@ -87,7 +90,7 @@ var getWeather = function(cityName) {
             forecastIconEl.setAttribute("alt", forecastDesc);
             forecastEl[0].append(forecastIconEl);
 
-            // add temperature, humidity and wind to 5 day weather cards
+            // add temperature to 5 day weather cards
             var forecastTemp = data["daily"][1]["temp"]["day"];
             var newForecastTemp = "Temperature: " + Math.round((((forecastTemp-273.5)*1.8)+32)) + "\xB0" + "F";
             var newForecastTempEl = document.createElement("p");
@@ -95,6 +98,7 @@ var getWeather = function(cityName) {
             newForecastTempEl.textContent = newForecastTemp;
             forecastEl[0].append(newForecastTempEl);
 
+            // add humidity to 5 day weather cards
             var forecastHumid = data["daily"][1]["humidity"];
             var newForecastHumid = "Humidity: " + forecastHumid + "%";
             var newForecastHumidEl = document.createElement("p");
@@ -102,6 +106,7 @@ var getWeather = function(cityName) {
             newForecastHumidEl.textContent = newForecastHumid;
             forecastEl[0].append(newForecastHumidEl);
 
+            // add wind to 5 day weather cards
             var forecastWind = data["daily"][1]["wind_speed"];
             var newForecastWind = "Wind Speed: " + forecastWind + " MPH";
             var newForecastWindEl = document.createElement("p");
