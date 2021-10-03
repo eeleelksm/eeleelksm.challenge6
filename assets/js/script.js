@@ -51,12 +51,15 @@ var getWeather = function(cityName) {
 
             // based on uv index, if good shows green, if ok shows yellow, if bad shows red
             if (uvindex.value < 4) {
-              uvIndexEl.setAttribute("class", "badge badge-success");
+              uvIndexEl.classList.add("badge");
+              uvIndexEl.classList.add("badge-success");
             }
           })
-        })
-    });
 
+          //get five-day forecast
+
+        })
+      });
     } else { 
       alert("Incorrect city name. Try again.");
     }
