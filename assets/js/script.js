@@ -1,8 +1,8 @@
 var citySearchAll = [];
-var cityEl = document.querySelector(".city");
-var pastSearchEl = document.querySelector(".past-search");
+var cityEl = document.querySelector("#city");
+var pastSearchEl = document.querySelector("#past-city-search");
 var searchFormEl = document.querySelector(".search-form");
-var searchButtonEl = document.querySelector(".search-button");
+var searchButtonEl = document.querySelector("#search");
 var todaysWeatherEl = document.querySelector(".today-weather")
 var fiveWeatherEl = document.querySelector(".fiveday-full")
 
@@ -25,6 +25,7 @@ getWeather();
 
 
 searchButtonEl.addEventListener("click", function() {
+  event.preventDefault();
   console.log("yes");
  })
 
