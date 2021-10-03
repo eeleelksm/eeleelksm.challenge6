@@ -34,7 +34,7 @@ var getWeather = function(cityName) {
       console.log(lon);
 
       cityNameEl.innerHTML = apiName + " - " + moment().format("dddd, MMMM D YYYY");
-      currentTempEl.innerHTML = "Temperature: " + apiTemp + "";
+      currentTempEl.innerHTML = "Temperature: " + Math.round((((apiTemp-273.5)*1.8)+32)) + "\xB0" + "F";
       currentHumidEl.innerHTML = "Humidity: " + apiHumid + "%";
 
     });
