@@ -6,6 +6,7 @@ var searchButtonEl = document.querySelector("#search");
 var todaysWeatherEl = document.querySelector(".today-weather")
 var fiveWeatherEl = document.querySelector("#fiveday-full")
 var currentTempEl = document.querySelector(".temp");
+var currentHumidEl = document.querySelector(".humid");
 var cityNameEl = document.querySelector("#city-name");
 
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
@@ -20,11 +21,29 @@ var getWeather = function(cityName) {
   .then(function(response) {
     if (response.ok) {
       response.json().then(function(data) {
-      console.log(data);
+      
+      var apiName = data['name'];
+      var apiTemp = data['main']['temp'];
+      var apiHumid = data['main']['humidity'];
+      var lat = data['coord']['lat'];
+      var lon = data['coord']['lon'];
+      console.log(apiName);
+      console.log(apiTemp);
+      console.log(apiHumid);
+      console.log(lat);
+      console.log(lon);
+
+      cityNameEl.innerHTML = apiName + " - " + moment().format("dddd, MMMM D YYYY");
+      currentTempEl.innerHTML = "Temperature: " + apiTemp + "";
+      currentHumidEl.innerHTML = "Humidity: " + apiHumid + "%";
+
     });
-    } else {
+    } else { 
       alert("Incorrect city name. Try again.");
     }
+  })
+  .catch(function(error) {
+    alert("Unable to retrieve this city's weather.")
   })
 };
 
