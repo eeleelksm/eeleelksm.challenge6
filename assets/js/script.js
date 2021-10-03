@@ -9,6 +9,7 @@ var currentTempEl = document.querySelector(".temp");
 var currentHumidEl = document.querySelector(".humid");
 var cityNameEl = document.querySelector("#city-name");
 var currentWindEl = document.querySelector(".wind");
+var uvIndexEl = document.querySelector(".uv-index");
 
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
 
@@ -40,7 +41,22 @@ var getWeather = function(cityName) {
         currentHumidEl.innerHTML = "Humidity: " + apiHumid + "%";
         currentWindEl.innerHTML = "Wind: " + apiWind + " MPH";
 
+        // retrieving the UV index using latitude and longitude
+        var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude={part}&appid=" + apiKey;
+        fetch(uviUrl)
+        .then(function(response) {
+          response.json().then(function(data) {
+            var uvindex = data['current']['uvi'];
+            uvIndexEl.innerHTML = "UV Index: " + uvindex;
+
+            // based on uv index, if good shows green, if ok shows yellow, if bad shows red
+            if (uvindex.value < 4) {
+              uvIndexEl.setAttribute("class", "badge badge-success");
+            }
+          })
+        })
     });
+
     } else { 
       alert("Incorrect city name. Try again.");
     }
