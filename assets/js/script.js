@@ -77,7 +77,7 @@ var getWeather = function(cityName) {
             var forecastDateEl = document.createElement("p");
             forecastDateEl.classList.add("forecast-date");
             forecastDateEl.textContent = forecastDate;
-            forecastEl[0].appendChild(forecastDateEl);
+            forecastEl[0].append(forecastDateEl);
 
             //create and add weather icon
             var forecastIcon = data["daily"][1]["weather"][0]["icon"];
@@ -93,7 +93,9 @@ var getWeather = function(cityName) {
             console.log(newForecastTemp);
             var newForecastTempEl = document.createElement("p");
             newForecastTempEl.classList.add("forecast-temp");
-            
+            newForecastTempEl.textContent = newForecastTemp;
+            forecastEl[0].append(newForecastTempEl);
+
 
             // var forecastHumid
 
