@@ -50,12 +50,20 @@ var getWeather = function(cityName) {
             uvIndexEl.innerHTML = "UV Index: " + uvindex;
 
             // based on uv index, if good shows green, if ok shows yellow, if bad shows red
-            if (uvindex.value < 4) {
+            if (uvindex < 4) {
               uvIndexEl.classList.add("badge");
               uvIndexEl.classList.add("badge-success");
+            } 
+            else if (uvindex < 8) {
+              uvIndexEl.classList.add("badge");
+              uvIndexEl.classList.add("badge-warning");
+            }
+            else {
+              uvIndexEl.classList.add("badge");
+              uvIndexEl.classList.add("badge-danger");
             }
           })
-
+          
           //get five-day forecast
 
         })
