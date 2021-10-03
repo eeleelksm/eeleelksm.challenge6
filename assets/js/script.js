@@ -8,6 +8,7 @@ var fiveWeatherEl = document.querySelector("#fiveday-full")
 var currentTempEl = document.querySelector(".temp");
 var currentHumidEl = document.querySelector(".humid");
 var cityNameEl = document.querySelector("#city-name");
+var currentWindEl = document.querySelector(".wind");
 
 var apiKey = "c9c512d1b8bc842f2acb7dc528d85eb3";
 
@@ -21,21 +22,23 @@ var getWeather = function(cityName) {
   .then(function(response) {
     if (response.ok) {
       response.json().then(function(data) {
-      
-      var apiName = data['name'];
-      var apiTemp = data['main']['temp'];
-      var apiHumid = data['main']['humidity'];
-      var lat = data['coord']['lat'];
-      var lon = data['coord']['lon'];
-      console.log(apiName);
-      console.log(apiTemp);
-      console.log(apiHumid);
-      console.log(lat);
-      console.log(lon);
+        // getting city name and weather attributes to add to application
+        var apiName = data['name'];
+        var apiTemp = data['main']['temp'];
+        var apiHumid = data['main']['humidity'];
+        var apiWind = data['wind']['speed'];
+        var lat = data['coord']['lat'];
+        var lon = data['coord']['lon'];
+        console.log(apiName);
+        console.log(apiTemp);
+        console.log(apiHumid);
+        console.log(lat);
+        console.log(lon);
 
-      cityNameEl.innerHTML = apiName + " - " + moment().format("dddd, MMMM D YYYY");
-      currentTempEl.innerHTML = "Temperature: " + Math.round((((apiTemp-273.5)*1.8)+32)) + "\xB0" + "F";
-      currentHumidEl.innerHTML = "Humidity: " + apiHumid + "%";
+        cityNameEl.innerHTML = apiName + " - " + moment().format("dddd (L)");
+        currentTempEl.innerHTML = "Temperature: " + Math.round((((apiTemp-273.5)*1.8)+32)) + "\xB0" + "F";
+        currentHumidEl.innerHTML = "Humidity: " + apiHumid + "%";
+        currentWindEl.innerHTML = "Wind: " + apiWind + " MPH";
 
     });
     } else { 
