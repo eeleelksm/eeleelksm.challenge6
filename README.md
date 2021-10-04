@@ -24,4 +24,4 @@ When another city is searched, the screen is cleared and shows the new weather f
 #### Search Bar Error
 - When a city is spelled incorrectly or doesn't exist, the text that the user put into the search bar will still appear listed as a button with the other previous cities searched.
 #### Weather Card Spacing
-- The 5 day forecast weather cards are not evenly distributed with space/
+- The 5 day forecast weather cards are not evenly distributed with the space that's provided.
