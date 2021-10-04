@@ -1,4 +1,4 @@
-var citySearchAll = [];
+var allCitySearches = [];
 var cityEl = document.querySelector("#city");
 var pastSearchEl = document.querySelector("#past-city-search");
 var searchFormEl = document.querySelector(".search-form");
@@ -114,19 +114,6 @@ var getWeather = function(cityName) {
               newForecastWindEl.textContent = newForecastWind;
               forecastEl[i-1].append(newForecastWindEl);
             }
-
-
-
-          // var unixDate = data["daily"][0]["dt"];
-          // var date = new Date(unixDate*1000);
-          // var day = [0, 8, 16, 24, 32];
-          // var forecastCard = forecastEl.classlist.add("card-body");
-          // console.log(forecastCard);
-            // var unixDate = data["daily"][0]["dt"];
-            // var date = new Date(unixDate*1000);
-            // var forecastDate = date.toLocaleDateString("en-US");
-            // console.log(forecastDate);
-            // forecastEl.innerHTML = unixDate;
           });
         })
       });
@@ -141,41 +128,21 @@ var getWeather = function(cityName) {
 
 searchButtonEl.addEventListener("click", function() {
   event.preventDefault();
-  console.log(cityEl.value);
   getWeather(cityEl.value);
+
+  //add buttons to return to under Search
+  var previousSearch = function(cityName) {
+    // prevent duplicates
+    for (var i = 0; i < allCitySearches.length; i++) {
+      if (cityName === allCitySearches[i]) {
+        allCitySearches.splice(i, 1);
+      }
+    };
+    allCitySearches.push(cityName);
+    localStorage.setItem("cities", JSON.stringify(allCitySearches));
+  }
+
+  //add information to local storage
+  
  })
 
-// display the current weather
-//display name of city
-
- // //get five-day forecast
-          // for (i = 0; i <forecastEl.length; i++) {
-          //   forecastEl.innerHTML = "";
-          //   var forecastDate = data["daily"]["dt"] * 1000;
-          //   console.log(forecastDate);
-    
-          // }
-
-// Get Current Weather 
-
-// Get Temperature
-
-// Get Humidity
-
-// Get UV Index
-
-// 5 Day Forecast
-
-
- 
-
-/**
- * var formSubmitHander = function() {
- *  event.preventDefault();
- *  console.log(event)
- * }
- * 
- * 
- * 
- * 
- */
