@@ -1,4 +1,4 @@
-var allCitySearches = [];
+var allCities = [];
 var cityEl = document.querySelector("#city");
 var pastSearchEl = document.querySelector("#past-city-search");
 var searchFormEl = document.querySelector(".search-form");
@@ -133,14 +133,34 @@ searchButtonEl.addEventListener("click", function() {
   //add buttons to return to under Search
   var previousSearch = function(cityName) {
     // prevent duplicates
-    for (var i = 0; i < allCitySearches.length; i++) {
-      if (cityName === allCitySearches[i]) {
-        allCitySearches.splice(i, 1);
+    for (var i = 0; i < allCities.length; i++) {
+      if (cityName === allCities[i]) {
+        allCities.splice(i, 1);
       }
     };
-    allCitySearches.push(cityName);
-    localStorage.setItem("cities", JSON.stringify(allCitySearches));
+    allCities.push(cityName);
+    localStorage.setItem("cities", JSON.stringify(allCities));
   }
+
+  //load local storage
+  var loadSearch = function() {
+    allCities = JSON.parse(localStorage.getItem("cities"));
+
+    if (!allCities) {
+      allCitiesSearches = [];
+      return false;
+    } else if (allCities.length > 8) {
+      // save only 8 recent
+      allCities.shift();
+    }
+  }
+  // creating list of cities that will appear under Search button
+  var cityListEl = document.createElement("ul");
+  cityListEl.className = "list-group";
+  pastSearchEl.appendChild(cityListEl);
+
+  
+
 
   //add information to local storage
   
