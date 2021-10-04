@@ -137,7 +137,20 @@ searchButtonEl.addEventListener("click", function() {
   pastSearchEl.append(cityListBtn);
 });
 
+var saveCity = function() {
+  localStorage.setItem("cities", JSON.stringify(allCities));
+}
 
+var getCity = function() {
+  var savedCity = localStorage.getItem("cities");
+
+  if(!savedCity) {
+    return false;
+  }
+}
+
+  // cityEl.push(JSON.parse(localStorage.getItem("cities")));
+  // window.localStorage.setItem("cities", JSON.stringify(allCities));
 
 //   //add buttons to return to under Search
 // var previousSearch = function(cityName) {
