@@ -70,17 +70,18 @@ var getWeather = function(cityName) {
         .then(function(response) {
           response.json().then(function(data) {
 
-            for (i = 1; i < forecastEl.length; i++) {
+            for (i = 1; i < forecastEl.length + 1; i++) {
               // convert the dt time
               var unixDate = data["daily"][i]["dt"];
               var date = new Date(unixDate*1000);
               var forecastDate = date.toLocaleDateString("en-US");
+              forecastEl[i-1].innerHTML = "";
 
               // add date to weather card
               var forecastDateEl = document.createElement("p");
               forecastDateEl.classList.add("forecast-date");
               forecastDateEl.textContent = forecastDate;
-              forecastEl[i-1].append(forecastDateEl);
+              // forecastEl[i-1].append(forecastDateEl);
 
               //create and add weather icon
               var forecastIcon = data["daily"][i]["weather"][0]["icon"];
@@ -88,7 +89,7 @@ var getWeather = function(cityName) {
               var forecastIconEl = document.createElement("img");
               forecastIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + forecastIcon + "@2x.png")
               forecastIconEl.setAttribute("alt", forecastDesc);
-              forecastEl[i-1].append(forecastIconEl);
+              // forecastEl[i-1].append(forecastIconEl);
 
               // add temperature to 5 day weather cards
               var forecastTemp = data["daily"][i]["temp"]["day"];
@@ -96,7 +97,7 @@ var getWeather = function(cityName) {
               var newForecastTempEl = document.createElement("p");
               newForecastTempEl.classList.add("forecast-temp");
               newForecastTempEl.textContent = newForecastTemp;
-              forecastEl[i-1].append(newForecastTempEl);
+              // forecastEl[i-1].append(newForecastTempEl);
 
               // add humidity to 5 day weather cards
               var forecastHumid = data["daily"][i]["humidity"];
@@ -104,7 +105,7 @@ var getWeather = function(cityName) {
               var newForecastHumidEl = document.createElement("p");
               newForecastHumidEl.classList.add("forecast-humid");
               newForecastHumidEl.textContent = newForecastHumid;
-              forecastEl[i-1].append(newForecastHumidEl);
+              // forecastEl[i-1].append(newForecastHumidEl);
 
               // add wind to 5 day weather cards
               var forecastWind = data["daily"][i]["wind_speed"];
@@ -112,7 +113,7 @@ var getWeather = function(cityName) {
               var newForecastWindEl = document.createElement("p");
               newForecastWindEl.classList.add("forecast-wind");
               newForecastWindEl.textContent = newForecastWind;
-              forecastEl[i-1].append(newForecastWindEl);
+              // forecastEl[i-1].append(newForecastWindEl);
             }
           });
         })
@@ -135,6 +136,7 @@ searchButtonEl.addEventListener("click", function() {
   cityListBtn.classList.add("btn-block", "btn", "btn-primary", "mt-2", "list-group");
   cityListBtn.innerHTML = cityEl.value;
   pastSearchEl.append(cityListBtn);
+
 });
 
 var saveCity = function() {
@@ -149,6 +151,7 @@ var getCity = function() {
   }
 }
 
+// PREVIOUS ATTEMPTS AT LOCAL STORAGE
   // cityEl.push(JSON.parse(localStorage.getItem("cities")));
   // window.localStorage.setItem("cities", JSON.stringify(allCities));
 

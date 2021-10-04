@@ -11,3 +11,8 @@ button {
 #forecast-all {
   font-size: 14px;
 }
+
+#fiveday-forecast {
+  flex: auto;
+  width: 100%;
+}
