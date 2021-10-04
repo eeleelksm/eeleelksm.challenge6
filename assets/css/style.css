@@ -5,6 +5,7 @@ header {
 
 button {
   border-radius: 5px;
+  text-align: center;
 }
 
 #forecast-all {

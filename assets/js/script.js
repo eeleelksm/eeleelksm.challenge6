@@ -130,39 +130,61 @@ searchButtonEl.addEventListener("click", function() {
   event.preventDefault();
   getWeather(cityEl.value);
 
-  //add buttons to return to under Search
-  var previousSearch = function(cityName) {
-    // prevent duplicates
-    for (var i = 0; i < allCities.length; i++) {
-      if (cityName === allCities[i]) {
-        allCities.splice(i, 1);
-      }
-    };
-    allCities.push(cityName);
-    localStorage.setItem("cities", JSON.stringify(allCities));
-  }
-
-  //load local storage
-  var loadSearch = function() {
-    allCities = JSON.parse(localStorage.getItem("cities"));
-
-    if (!allCities) {
-      allCitiesSearches = [];
-      return false;
-    } else if (allCities.length > 8) {
-      // save only 8 recent
-      allCities.shift();
-    }
-  }
-  // creating list of cities that will appear under Search button
-  var cityListEl = document.createElement("ul");
-  cityListEl.className = "list-group";
-  pastSearchEl.appendChild(cityListEl);
-
-  
+  var cityListBtn = document.createElement("button");
+  cityListBtn.setAttribute("type", "submit");
+  cityListBtn.classList.add("btn-block", "btn", "btn-primary", "mt-2", "list-group");
+  cityListBtn.innerHTML = cityEl.value;
+  pastSearchEl.append(cityListBtn);
+});
 
 
-  //add information to local storage
-  
- })
+
+//   //add buttons to return to under Search
+// var previousSearch = function(cityName) {
+//   // prevent duplicates
+//   for (var i = 0; i < allCities.length; i++) {
+//     if (cityName === allCities[i]) {
+//       allCities.splice(i, 1);
+//     }
+//   };
+//   allCities.push(cityName);
+//   localStorage.setItem("cities", JSON.stringify(allCities));
+// }
+
+// //load local storage
+// var loadSearch = function() {
+//     allCities = JSON.parse(localStorage.getItem("cities"));
+
+//     if (!allCities) {
+//       allCitiesSearches = [];
+//       return false;
+//     } else if (allCities.length > 8) {
+//       // save only 8 recent
+//       allCities.shift();
+//     }
+//     // creating list of cities that will appear under Search button
+//     var cityListEl = document.createElement("ul");
+//     cityListEl.className = "list-group city-list";
+//     pastSearchEl.appendChild(cityListEl);
+
+//     for (var i = 0; i < allCities.length; i++) {
+//       var cityListBtn = document.createElement("button");
+//       cityListBtn.setAttribute("type", "button");
+//       cityListBtn.classBame = "list-group-item";
+//       cityListBtn.setAttribute("value", allCities[i]);
+//       cityListBtn.textContent = allCities[i];
+//       cityListEl.append(cityListBtn);
+//     }
+//     var allCityList = document.querySelector('.city-list');
+//     allCityList.addEventListener("click", selectNew);
+//   }
+
+//   var selectNew = function(event) {
+//     var clickCity = event.target.getAttribute("value");
+//     getWeather(clickCity);
+//   }
+
+// loadSearch();
+// searchButtonEl.addEventListener("click", getWeather);
+
 
