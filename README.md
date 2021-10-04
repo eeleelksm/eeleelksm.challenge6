@@ -1,1 +1,3 @@
-# eeleelksm.challenge6
+# Module 6 Challenge - Weather Dashboard
+
+
