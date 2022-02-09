@@ -1,4 +1,4 @@
-Weather Dashboard
+# Weather Dashboard
 
 ## Details
 In this challenge we were asked to create a Weather Dashboard using OpenWeather API for a traveler who wants to see the weather outlook for multiple cities so they can plan their trip accordingly.
