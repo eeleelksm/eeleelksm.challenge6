@@ -4,7 +4,7 @@
 In this challenge we were asked to create a Weather Dashboard using OpenWeather API for a traveler who wants to see the weather outlook for multiple cities so they can plan their trip accordingly.
 
 ## Weather Dashboard Link
-The application can be found at the following link: https://eeleelksm.github.io/eeleelksm.challenge6/
+The application can be found at the following link: https://eeleelksm.github.io/weather-dashboard/
 
 ## Screenshots
 ![weatherdashboard-1](https://user-images.githubusercontent.com/40374896/135783104-c012fa0c-f8ea-4896-bcfe-b1b4ff9a0a30.png)
